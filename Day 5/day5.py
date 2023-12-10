@@ -64,6 +64,7 @@ def get_record(src_to_dest_map, val):
             return dest + val - src
     return val
 
+
 def get_record2(src_to_dest_map, val):
     for std in src_to_dest_map:
         src, dest, lim = std
@@ -96,14 +97,14 @@ def part1(seeds):
 
 def in_range(seed, seeds):
     for i in range(0, len(seeds), 2):
-        if seeds[i] <= seed < seeds[i] + seeds[i+1]:
+        if seeds[i] <= seed <= seeds[i] + seeds[i+1]:
             return True
     return False
 
 
 def part2(seeds):
     location = 0
-    while location < 41222969:
+    while True:
         humidity = get_record2(humidity_to_location_map, location)
         temperature = get_record2(temperature_to_humidity_map, humidity)
         light = get_record2(light_to_temperature_map, temperature)
@@ -116,10 +117,9 @@ def part2(seeds):
             return location, seed
 
         location += 1
-    return -1
 
 
-location = part1(seeds)
+# location = part1(seeds)
 # print(location)
 start_time = time.time()
 print(part2(seeds))
